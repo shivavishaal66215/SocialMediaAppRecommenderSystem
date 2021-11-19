@@ -31,6 +31,7 @@ def read_mongo(db, collection, host='localhost', port=27017, username=None, pass
 
 #function to make recommendations on a given user_id
 def recommend(target_uid):
+    print("hello")
     df=read_mongo("recommender", "dataset","host",27017,"username","password").drop(columns=["_id"],axis=1)
     uid_dist={}
     for i in range(len(df)):
