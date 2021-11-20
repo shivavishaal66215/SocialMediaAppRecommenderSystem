@@ -44,7 +44,7 @@ def recommend(target_uid):
                 uid_dist[i]+=pow(5,4)
 
     bound=int(round(math.sqrt(len(df)),0))
-    uid_dist_sorted=sorted(uid_dist.items(), key=lambda x: x[1])[:bound]
+    uid_dist_sorted=sorted(uid_dist.items(), key=lambda x: x[1],reverse=True)[:bound]
     rating_target={}
     for i in range(len(df.columns)):
         col=df.iloc[:,i].name
