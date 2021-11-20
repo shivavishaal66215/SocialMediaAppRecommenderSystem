@@ -39,9 +39,9 @@ def recommend(target_uid):
         uid_dist[i]=0
         for j in range(len(df.columns)):
             if((not math.isnan(df.iloc[target_uid,j])) and (not math.isnan(df.iloc[i,j]))):
-                uid_dist[i]+=pow(abs(df.iloc[target_uid,j]-df.iloc[i,j]),4)
+                uid_dist[i]+=abs(df.iloc[target_uid,j]-df.iloc[i,j])
             else:
-                uid_dist[i]+=pow(5,4)
+                uid_dist[i]+=1
 
     bound=int(round(math.sqrt(len(df)),0))
     uid_dist_sorted=sorted(uid_dist.items(), key=lambda x: x[1],reverse=True)[:bound]
