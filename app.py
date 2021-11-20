@@ -65,11 +65,26 @@ def recommend(target_uid):
 
 @app.route("/")
 def home():
-    data = request.form.to_dict()
-    userid = int(data["userid"])
-    result = recommend(userid)
-    
-    return jsonify(result)
+    try:
+        input_data = request.form.to_dict()
+        userid = int(input_data["userid"])
+        data = recommend(userid)
+        
+        result = {
+            "msg": "recommendation successfully made",
+            "data": data,
+        }
+
+        return jsonify(result),200
+
+    except:
+        result = {
+            "msg": "check if you have entered the userid correctly",
+            "data": {},
+        }
+
+        return jsonify(result),403
+
 
 if __name__ == "__main__":
     app.run()
